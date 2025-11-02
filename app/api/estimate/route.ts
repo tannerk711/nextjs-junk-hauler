@@ -80,7 +80,7 @@ Format your response as JSON with these exact keys:
 
     console.log('🤖 Calling Anthropic API...');
     const message = await anthropic.messages.create({
-      model: 'claude-3-5-sonnet-20241022',
+      model: 'claude-3-5-sonnet-latest',
       max_tokens: 1024,
       messages: [
         {

@@ -70,7 +70,7 @@ Your task:
 1. Identify and list EVERY visible item in the photos
 2. Estimate the compressed cubic yards for each item (as it would fit in a truck)
 3. Calculate conservative, mid-range, and higher TOTAL volume estimates
-4. Provide a recommended price using $55 per cubic yard
+4. Provide a recommended price using $41 per cubic yard
 
 REALISTIC Volume Guidelines (compressed/loaded volume):
 - Standard couch/sofa: 2-3 cubic yards (breaks down and compresses)

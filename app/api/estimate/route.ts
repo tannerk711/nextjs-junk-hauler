@@ -1,14 +1,60 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Anthropic from '@anthropic-ai/sdk';
+import { z } from 'zod';
 
-// Helper function to convert image URL to base64
+// Validation schema
+const estimateRequestSchema = z.object({
+  photos: z.array(z.object({
+    url: z.string().url().max(500),
+    publicId: z.string().max(200).optional(),
+    thumbnail: z.string().url().max(500).optional(),
+  })).min(1).max(10),
+  notes: z.string().max(500).optional(),
+});
+
+// Helper function to convert image URL to base64 with SSRF protection
 async function urlToBase64(url: string): Promise<{ base64: string; mediaType: string }> {
-  const response = await fetch(url);
-  const buffer = await response.arrayBuffer();
-  const base64 = Buffer.from(buffer).toString('base64');
+  // SECURITY: Validate URL is from allowed domain (Cloudinary only)
+  const allowedDomain = 'res.cloudinary.com';
+  let urlObj: URL;
 
-  // Determine media type from URL or response
-  const contentType = response.headers.get('content-type') || 'image/jpeg';
+  try {
+    urlObj = new URL(url);
+  } catch (err) {
+    throw new Error('Invalid URL format');
+  }
+
+  if (!urlObj.hostname.endsWith(allowedDomain)) {
+    throw new Error('Invalid image source - must be from Cloudinary');
+  }
+
+  // SECURITY: Prevent redirects to internal services
+  const response = await fetch(url, {
+    redirect: 'error',
+  });
+
+  // SECURITY: Validate content-type is actually an image
+  const contentType = response.headers.get('content-type') || '';
+  if (!contentType.startsWith('image/')) {
+    throw new Error('Invalid content type - must be an image');
+  }
+
+  // SECURITY: Check content-length to prevent memory exhaustion
+  const contentLength = response.headers.get('content-length');
+  const maxSize = 10 * 1024 * 1024; // 10MB
+
+  if (contentLength && parseInt(contentLength) > maxSize) {
+    throw new Error('Image too large - maximum 10MB');
+  }
+
+  const buffer = await response.arrayBuffer();
+
+  // SECURITY: Double-check actual size after download
+  if (buffer.byteLength > maxSize) {
+    throw new Error('Image too large - maximum 10MB');
+  }
+
+  const base64 = Buffer.from(buffer).toString('base64');
   const mediaType = contentType.split('/')[1] || 'jpeg';
 
   return { base64, mediaType };
@@ -16,20 +62,27 @@ async function urlToBase64(url: string): Promise<{ base64: string; mediaType: st
 
 export async function POST(request: NextRequest) {
   try {
-    const { photos, notes } = await request.json();
+    // Parse and validate request body
+    const rawData = await request.json();
+    const validationResult = estimateRequestSchema.safeParse(rawData);
 
-    console.log('📸 Estimate API called with:', { photoCount: photos?.length, notes });
-
-    if (!photos || photos.length === 0) {
+    if (!validationResult.success) {
       return NextResponse.json(
-        { error: 'At least one photo is required' },
+        {
+          error: 'Invalid request data',
+          details: validationResult.error.issues.map(issue => ({
+            field: issue.path.join('.'),
+            message: issue.message
+          }))
+        },
         { status: 400 }
       );
     }
 
+    const { photos, notes } = validationResult.data;
+
     const apiKey = process.env.ANTHROPIC_API_KEY;
     if (!apiKey) {
-      console.error('❌ ANTHROPIC_API_KEY not configured');
       return NextResponse.json(
         { error: 'API key not configured' },
         { status: 500 }
@@ -39,12 +92,10 @@ export async function POST(request: NextRequest) {
     const anthropic = new Anthropic({ apiKey });
 
     // Convert all photos to base64
-    console.log('🔄 Converting photos to base64...');
     const imageContents = await Promise.all(
       photos.map(async (photo: any, index: number) => {
         try {
           const { base64, mediaType } = await urlToBase64(photo.url);
-          console.log(`✅ Photo ${index + 1} converted (${mediaType})`);
           return {
             type: 'image' as const,
             source: {
@@ -54,8 +105,7 @@ export async function POST(request: NextRequest) {
             },
           };
         } catch (err) {
-          console.error(`❌ Failed to convert photo ${index + 1}:`, err);
-          throw new Error(`Failed to process photo ${index + 1}`);
+          throw new Error(`Failed to process photo ${index + 1}: ${err instanceof Error ? err.message : 'Unknown error'}`);
         }
       })
     );
@@ -116,7 +166,6 @@ Format your response as JSON with these exact keys:
   "confidence": "High/Medium/Low"
 }`;
 
-    console.log('🤖 Calling Anthropic API...');
     const message = await anthropic.messages.create({
       model: 'claude-sonnet-4-5-20250929',
       max_tokens: 1024,
@@ -134,35 +183,29 @@ Format your response as JSON with these exact keys:
       ],
     });
 
-    console.log('✅ Anthropic API response received');
-
     // Parse the response
     const responseText =
       message.content[0].type === 'text' ? message.content[0].text : '';
 
-    console.log('📄 AI Response:', responseText);
-
     // Extract JSON from the response
     const jsonMatch = responseText.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
-      console.error('❌ Failed to extract JSON from response');
       throw new Error('Failed to parse AI response');
     }
 
     const estimate = JSON.parse(jsonMatch[0]);
-    console.log('✅ Estimate generated:', estimate);
 
     return NextResponse.json(estimate);
   } catch (error: any) {
-    console.error('❌ Error generating estimate:', error);
-    console.error('Error details:', {
-      message: error.message,
-      stack: error.stack,
-    });
+    // Only log errors in development
+    if (process.env.NODE_ENV !== 'production') {
+      console.error('Error generating estimate:', error);
+    }
+
     return NextResponse.json(
       {
         error: 'Failed to generate estimate',
-        details: error.message
+        details: process.env.NODE_ENV !== 'production' ? error.message : 'An error occurred'
       },
       { status: 500 }
     );

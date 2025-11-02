@@ -7,8 +7,8 @@ export default function Home() {
       <div className="mx-auto max-w-7xl px-6 pt-20 pb-32 sm:pt-32 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h1 className="font-display text-5xl font-bold tracking-tight text-slate-900 sm:text-7xl">
-            Boise's Trusted
-            <span className="block text-blue-600">Junk Removal Service</span>
+            <span className="block text-blue-600">Junk Yard Gentlemen</span>
+            <span className="block text-3xl sm:text-4xl mt-4">Professional Junk Removal</span>
           </h1>
           <p className="mt-6 text-lg leading-8 text-slate-600">
             Fast, affordable, and eco-friendly junk removal throughout the Treasure Valley.
@@ -22,10 +22,10 @@ export default function Home() {
               Get Instant Quote
             </Link>
             <a
-              href="tel:+12085551234"
+              href="tel:+18445435865"
               className="text-base font-semibold leading-6 text-slate-900 hover:text-blue-600 transition-colors"
             >
-              Call (208) 555-1234 <span aria-hidden="true">→</span>
+              Call (844) 543-JUNK <span aria-hidden="true">→</span>
             </a>
           </div>
         </div>
@@ -88,8 +88,12 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-slate-200 bg-slate-50">
         <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+          <div className="flex justify-center gap-8 text-sm text-slate-600 mb-4">
+            <Link href="/privacy" className="hover:text-blue-600">Privacy Policy</Link>
+            <a href="tel:+18445435865" className="hover:text-blue-600">(844) 543-JUNK</a>
+          </div>
           <p className="text-center text-sm text-slate-600">
-            &copy; 2025 Junk Hauler Boise. Licensed and Insured. Serving the Treasure Valley since 2020.
+            &copy; 2025 Junk Yard Gentlemen. Licensed and Insured. Serving the Treasure Valley.
           </p>
         </div>
       </footer>

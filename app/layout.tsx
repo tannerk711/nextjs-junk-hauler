@@ -14,8 +14,8 @@ const lexend = Lexend({
 });
 
 export const metadata: Metadata = {
-  title: "Junk Hauler Boise - Professional Junk Removal Service",
-  description: "Professional junk removal service in Boise and the Treasure Valley. Same-day service available. Licensed and insured. Get an instant quote!",
+  title: "Junk Yard Gentlemen - Professional Junk Removal Service in Boise",
+  description: "Professional junk removal service in Boise and the Treasure Valley. Fast, affordable, eco-friendly. Same-day service available. Licensed and insured. Get an instant AI-powered quote!",
 };
 
 export default function RootLayout({

@@ -1,0 +1,10 @@
+# robots.txt for Junk Yard Gentlemen
+# https://junkyardgentlemen.com
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /quote/success
+
+# Sitemap
+Sitemap: https://junkyardgentlemen.com/sitemap.xml

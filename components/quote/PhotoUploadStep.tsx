@@ -22,8 +22,6 @@ export default function PhotoUploadStep() {
       const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
       const uploadPreset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
 
-      console.log('📸 Initializing Cloudinary Widget:', { cloudName, uploadPreset });
-
       const uploadWidget = window.cloudinary.createUploadWidget(
         {
           cloudName,
@@ -39,14 +37,12 @@ export default function PhotoUploadStep() {
         },
         (error: any, result: any) => {
           if (error) {
-            console.error('❌ Widget error:', error);
             setUploadError('Upload failed. Please try again.');
             setIsUploading(false);
             return;
           }
 
           if (result.event === 'success') {
-            console.log('✅ Upload success:', result.info);
             const currentPhotos = watch('photos') || [];
             setValue('photos', [
               ...currentPhotos,
@@ -59,7 +55,6 @@ export default function PhotoUploadStep() {
           }
 
           if (result.event === 'queues-end') {
-            console.log('✅ All uploads complete');
             setIsUploading(false);
             uploadWidget.close();
           }
@@ -67,18 +62,14 @@ export default function PhotoUploadStep() {
       );
 
       setWidget(uploadWidget);
-      console.log('✅ Widget created successfully');
     }
   }, [setValue, watch]);
 
   const openWidget = () => {
     if (widget) {
-      console.log('📤 Opening upload widget');
       setUploadError(null);
       setIsUploading(true);
       widget.open();
-    } else {
-      console.error('❌ Widget not initialized');
     }
   };
 

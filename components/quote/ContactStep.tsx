@@ -41,7 +41,7 @@ export default function ContactStep() {
             id="phone"
             {...register('phone', { required: 'Phone number is required' })}
             className="mt-2 block w-full rounded-lg border border-slate-300 px-4 py-3 text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-            placeholder="(208) 555-1234"
+            placeholder="(844) 543-5865"
           />
           {errors.phone && (
             <p className="mt-1 text-sm text-red-600">{errors.phone.message as string}</p>

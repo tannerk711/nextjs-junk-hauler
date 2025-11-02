@@ -60,21 +60,40 @@ export async function POST(request: NextRequest) {
       })
     );
 
-    const prompt = `You are an expert junk removal estimator. Analyze these photos of items that need to be removed and provide an accurate estimate.
+    const prompt = `You are an expert junk removal estimator. Analyze these photos carefully and provide a detailed, accurate estimate.
 
 ${notes ? `Additional notes from customer: ${notes}` : ''}
 
-Based on the photos, provide:
-1. Estimated volume (in cubic yards)
-2. Price range (based on $75-150 per cubic yard)
-3. Brief reasoning for your estimate
-4. Confidence level (High/Medium/Low)
+Your task:
+1. Identify and list EVERY visible item in the photos
+2. Estimate the cubic yards for each item individually
+3. Calculate conservative, mid-range, and higher total volume estimates
+4. Provide a recommended price using $55 per cubic yard
+
+Guidelines for volume estimation:
+- Standard couch/sofa: 3-4 cubic yards
+- Chairs/ottomans: 1-2 cubic yards each
+- Mattress (queen/king): 3-4 cubic yards
+- Boxes (medium): 0.5-1 cubic yard each
+- Large appliances: 2-4 cubic yards
+- Entertainment centers/cabinets: 3-5 cubic yards
+- Consider stacking efficiency and air space
 
 Format your response as JSON with these exact keys:
 {
+  "detectedItems": [
+    {"item": "Item description", "volume": "X-Y cubic yards"},
+    {"item": "Item description", "volume": "X cubic yards"}
+  ],
+  "volumeBreakdown": {
+    "conservative": "X cubic yards",
+    "midRange": "X cubic yards",
+    "high": "X cubic yards"
+  },
   "estimatedVolume": "X-Y cubic yards",
-  "priceRange": "$XXX-$YYY",
-  "reasoning": "Brief explanation",
+  "priceRange": "$XXX-$XXX",
+  "recommendedPrice": "$XXX-$XXX",
+  "reasoning": "Detailed explanation of your methodology and how you calculated the volume",
   "confidence": "High/Medium/Low"
 }`;
 

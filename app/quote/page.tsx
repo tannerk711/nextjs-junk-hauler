@@ -30,8 +30,15 @@ type FormData = {
 };
 
 type Estimate = {
+  detectedItems?: Array<{ item: string; volume: string }>;
+  volumeBreakdown?: {
+    conservative: string;
+    midRange: string;
+    high: string;
+  };
   estimatedVolume: string;
   priceRange: string;
+  recommendedPrice?: string;
   reasoning: string;
   confidence: string;
 };

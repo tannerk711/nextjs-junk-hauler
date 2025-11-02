@@ -2,8 +2,15 @@ import Link from 'next/link';
 
 type EstimateResultProps = {
   estimate: {
+    detectedItems?: Array<{ item: string; volume: string }>;
+    volumeBreakdown?: {
+      conservative: string;
+      midRange: string;
+      high: string;
+    };
     estimatedVolume: string;
     priceRange: string;
+    recommendedPrice?: string;
     reasoning: string;
     confidence: string;
   };
@@ -12,12 +19,13 @@ type EstimateResultProps = {
 export default function EstimateResult({ estimate }: EstimateResultProps) {
   return (
     <div className="text-center">
-      <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
+      {/* Success Icon */}
+      <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-green-400 to-emerald-500 shadow-lg shadow-green-500/30">
         <svg
-          className="h-8 w-8 text-green-600"
+          className="h-10 w-10 text-white"
           fill="none"
           viewBox="0 0 24 24"
-          strokeWidth="2"
+          strokeWidth="3"
           stroke="currentColor"
         >
           <path
@@ -28,86 +36,155 @@ export default function EstimateResult({ estimate }: EstimateResultProps) {
         </svg>
       </div>
 
-      <h2 className="mt-4 font-display text-2xl font-semibold text-slate-900">
-        Your Estimate is Ready!
+      <h2 className="mt-6 font-display text-3xl font-bold text-slate-900">
+        Here's Your Instant Quote!
       </h2>
+      <p className="mt-2 text-slate-600">
+        Our AI has analyzed your photos and generated an estimate. We'll contact you shortly to confirm details.
+      </p>
 
-      <div className="mt-8 rounded-lg bg-gradient-to-br from-blue-50 to-slate-50 p-6">
-        <div className="text-center">
-          <p className="text-sm font-medium text-slate-600">Estimated Volume</p>
-          <p className="mt-1 text-3xl font-bold text-slate-900">{estimate.estimatedVolume}</p>
-        </div>
+      {/* Main Glassmorphic Card */}
+      <div className="mt-8 relative rounded-2xl bg-gradient-to-br from-blue-600 via-blue-500 to-indigo-600 p-[2px] shadow-2xl shadow-blue-500/50">
+        <div className="rounded-2xl bg-white/10 backdrop-blur-md p-8 text-white">
+          {/* AI Estimate Badge */}
+          <div className="absolute top-4 right-4 flex items-center gap-1.5 rounded-full bg-white/20 backdrop-blur-sm px-3 py-1 text-xs font-medium">
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" />
+            </svg>
+            AI Estimate
+          </div>
 
-        <div className="mt-6 text-center">
-          <p className="text-sm font-medium text-slate-600">Price Range</p>
-          <p className="mt-1 text-4xl font-bold text-blue-600">{estimate.priceRange}</p>
-        </div>
+          <p className="text-sm font-medium text-white/90">Your AI-Powered Estimate</p>
 
-        <div className="mt-6 rounded-lg bg-white p-4">
-          <p className="text-sm font-medium text-slate-900">Analysis</p>
-          <p className="mt-2 text-sm text-slate-600">{estimate.reasoning}</p>
-        </div>
+          {/* Price Display */}
+          <div className="mt-2">
+            <div className="text-5xl font-bold font-display tracking-tight">
+              {estimate.recommendedPrice || estimate.priceRange}
+            </div>
+            <p className="mt-2 text-sm text-white/80">
+              Based on {estimate.estimatedVolume}
+            </p>
+          </div>
 
-        <div className="mt-4 flex items-center justify-center gap-2 text-sm text-slate-600">
-          <svg
-            className="h-5 w-5 text-blue-600"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z"
-            />
-          </svg>
-          <span>AI Confidence: {estimate.confidence}</span>
+          {/* What's Included */}
+          <div className="mt-6 rounded-xl bg-white/10 backdrop-blur-sm p-4 text-left">
+            <p className="text-sm font-semibold mb-3">What's included:</p>
+            <ul className="space-y-2 text-sm">
+              <li className="flex items-center gap-2">
+                <svg className="h-5 w-5 flex-shrink-0 text-green-300" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+                </svg>
+                Labor and equipment
+              </li>
+              <li className="flex items-center gap-2">
+                <svg className="h-5 w-5 flex-shrink-0 text-green-300" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+                </svg>
+                Eco-friendly disposal fees
+              </li>
+              <li className="flex items-center gap-2">
+                <svg className="h-5 w-5 flex-shrink-0 text-green-300" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+                </svg>
+                Donation/recycling coordination
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
-      <div className="mt-8 rounded-lg border-2 border-blue-200 bg-blue-50 p-6">
-        <h3 className="font-display text-lg font-semibold text-slate-900">
+      {/* Detected Items Section */}
+      {estimate.detectedItems && estimate.detectedItems.length > 0 && (
+        <div className="mt-6 rounded-xl border border-slate-200 bg-white p-6 text-left shadow-lg">
+          <h3 className="font-display text-lg font-semibold text-slate-900 mb-4">
+            Detected Items
+          </h3>
+          <div className="space-y-2">
+            {estimate.detectedItems.map((item, index) => (
+              <div key={index} className="flex items-start justify-between py-2 border-b border-slate-100 last:border-0">
+                <span className="text-sm text-slate-700">{item.item}</span>
+                <span className="text-sm font-medium text-slate-900 ml-4">{item.volume}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Volume Breakdown (if available) */}
+      {estimate.volumeBreakdown && (
+        <div className="mt-6 rounded-xl border border-slate-200 bg-gradient-to-br from-slate-50 to-blue-50 p-6 text-left shadow-md">
+          <h3 className="font-display text-lg font-semibold text-slate-900 mb-4">
+            Volume Breakdown
+          </h3>
+          <div className="grid grid-cols-3 gap-4 text-center">
+            <div>
+              <p className="text-xs text-slate-600 mb-1">Conservative</p>
+              <p className="text-lg font-semibold text-slate-900">{estimate.volumeBreakdown.conservative}</p>
+            </div>
+            <div className="border-x border-slate-200">
+              <p className="text-xs text-slate-600 mb-1">Mid-Range</p>
+              <p className="text-lg font-semibold text-blue-600">{estimate.volumeBreakdown.midRange}</p>
+            </div>
+            <div>
+              <p className="text-xs text-slate-600 mb-1">High</p>
+              <p className="text-lg font-semibold text-slate-900">{estimate.volumeBreakdown.high}</p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* AI Analysis */}
+      <div className="mt-6 rounded-xl border border-slate-200 bg-white p-6 text-left shadow-md">
+        <div className="flex items-center justify-between mb-3">
+          <h3 className="font-display text-lg font-semibold text-slate-900">
+            AI Analysis
+          </h3>
+          <span className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-medium ${
+            estimate.confidence === 'High' ? 'bg-green-100 text-green-700' :
+            estimate.confidence === 'Medium' ? 'bg-yellow-100 text-yellow-700' :
+            'bg-orange-100 text-orange-700'
+          }`}>
+            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" />
+            </svg>
+            {estimate.confidence} Confidence
+          </span>
+        </div>
+        <p className="text-sm text-slate-600 leading-relaxed">{estimate.reasoning}</p>
+      </div>
+
+      {/* What Happens Next */}
+      <div className="mt-8 rounded-xl border-2 border-blue-200 bg-gradient-to-br from-blue-50 to-indigo-50 p-6">
+        <h3 className="font-display text-xl font-bold text-slate-900">
           What happens next?
         </h3>
-        <ul className="mt-4 space-y-2 text-left text-sm text-slate-600">
-          <li className="flex items-start">
-            <svg className="mr-2 h-5 w-5 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                clipRule="evenodd"
-              />
-            </svg>
+        <ul className="mt-4 space-y-3 text-left text-sm text-slate-700">
+          <li className="flex items-start gap-3">
+            <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 text-white text-xs font-bold">
+              1
+            </div>
             <span>We've received your information and will contact you within 1 hour</span>
           </li>
-          <li className="flex items-start">
-            <svg className="mr-2 h-5 w-5 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                clipRule="evenodd"
-              />
-            </svg>
+          <li className="flex items-start gap-3">
+            <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 text-white text-xs font-bold">
+              2
+            </div>
             <span>We'll confirm the quote and schedule a convenient pickup time</span>
           </li>
-          <li className="flex items-start">
-            <svg className="mr-2 h-5 w-5 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
-                clipRule="evenodd"
-              />
-            </svg>
+          <li className="flex items-start gap-3">
+            <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-600 text-white text-xs font-bold">
+              3
+            </div>
             <span>Our team will haul away your junk and clean up the area</span>
           </li>
         </ul>
       </div>
 
+      {/* CTA Buttons */}
       <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
         <a
           href="tel:+12085551234"
-          className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white hover:bg-blue-500 transition-all"
+          className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-8 py-4 text-base font-semibold text-white hover:bg-blue-500 transition-all shadow-lg shadow-blue-600/30 hover:shadow-xl hover:shadow-blue-600/40"
         >
           <svg className="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
             <path
@@ -120,7 +197,7 @@ export default function EstimateResult({ estimate }: EstimateResultProps) {
         </a>
         <Link
           href="/"
-          className="inline-flex items-center justify-center rounded-lg border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-900 hover:bg-slate-50 transition-all"
+          className="inline-flex items-center justify-center rounded-lg border-2 border-slate-300 bg-white px-8 py-4 text-base font-semibold text-slate-900 hover:bg-slate-50 transition-all"
         >
           Back to Home
         </Link>

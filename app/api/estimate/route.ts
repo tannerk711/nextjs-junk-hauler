@@ -64,26 +64,43 @@ export async function POST(request: NextRequest) {
 
 ${notes ? `Additional notes from customer: ${notes}` : ''}
 
+CRITICAL: Your estimate must reflect the ACTUAL LOADED VOLUME in a truck after items are broken down, stacked, and compressed efficiently. DO NOT simply add up individual item volumes - that leads to massive overestimation.
+
 Your task:
 1. Identify and list EVERY visible item in the photos
-2. Estimate the cubic yards for each item individually
-3. Calculate conservative, mid-range, and higher total volume estimates
+2. Estimate the compressed cubic yards for each item (as it would fit in a truck)
+3. Calculate conservative, mid-range, and higher TOTAL volume estimates
 4. Provide a recommended price using $55 per cubic yard
 
-Guidelines for volume estimation:
-- Standard couch/sofa: 3-4 cubic yards
-- Chairs/ottomans: 1-2 cubic yards each
-- Mattress (queen/king): 3-4 cubic yards
-- Boxes (medium): 0.5-1 cubic yard each
-- Large appliances: 2-4 cubic yards
-- Entertainment centers/cabinets: 3-5 cubic yards
-- Consider stacking efficiency and air space
+REALISTIC Volume Guidelines (compressed/loaded volume):
+- Standard couch/sofa: 2-3 cubic yards (breaks down and compresses)
+- Loveseat: 1.5-2 cubic yards
+- Single chairs/ottomans: 0.5-1 cubic yard each
+- Mattress (queen/king): 2-3 cubic yards (compresses significantly)
+- Small boxes (12"x12"): 0.15-0.25 cubic yards each
+- Medium boxes (18"x18"): 0.3-0.5 cubic yards each
+- Large boxes (24"x24"): 0.5-0.8 cubic yards each
+- Mini fridge/small appliances: 1.5-2.5 cubic yards
+- Full-size refrigerator: 3-4 cubic yards
+- Entertainment centers/cabinets: 2-3 cubic yards (disassembled)
+- 4-tier shelving units: 1.5-2.5 cubic yards (disassembled)
+- Desks: 2-3 cubic yards
+- File cabinets: 1-2 cubic yards each
+
+IMPORTANT ESTIMATION RULES:
+- Items stack efficiently in trucks (20-30% volume reduction from efficient packing)
+- Furniture breaks down (remove legs, cushions separate)
+- Boxes compress and nestle together
+- ALWAYS be conservative - lower is better than higher
+- A typical 10x10 storage unit when full = 12-18 cubic yards loaded
+
+For reference: A standard pickup truck bed holds about 2.5 cubic yards. A typical junk removal job is 4-8 cubic yards.
 
 Format your response as JSON with these exact keys:
 {
   "detectedItems": [
-    {"item": "Item description", "volume": "X-Y cubic yards"},
-    {"item": "Item description", "volume": "X cubic yards"}
+    {"item": "Item description", "volume": "~X cy"},
+    {"item": "Item description", "volume": "~X cy"}
   ],
   "volumeBreakdown": {
     "conservative": "X cubic yards",

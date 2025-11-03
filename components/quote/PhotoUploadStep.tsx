@@ -2,6 +2,7 @@
 
 import { useFormContext } from 'react-hook-form';
 import { useState, useEffect } from 'react';
+import imageCompression from 'browser-image-compression';
 
 declare global {
   interface Window {
@@ -23,6 +24,26 @@ export default function PhotoUploadStep() {
   const [uploadError, setUploadError] = useState<string | null>(null);
   const [widget, setWidget] = useState<any>(null);
 
+  // Compress image before upload (dramatically speeds up mobile uploads)
+  const compressImage = async (file: File): Promise<File> => {
+    const options = {
+      maxSizeMB: 0.5, // Target 500KB max
+      maxWidthOrHeight: 1920, // Max dimension
+      useWebWorker: true, // Use Web Worker for better performance
+      fileType: 'image/jpeg', // Convert to JPEG for better compression
+      initialQuality: 0.85, // 85% quality
+    };
+
+    try {
+      const compressedFile = await imageCompression(file, options);
+      console.log(`Compressed ${file.name}: ${(file.size / 1024 / 1024).toFixed(2)}MB → ${(compressedFile.size / 1024 / 1024).toFixed(2)}MB`);
+      return compressedFile;
+    } catch (error) {
+      console.error('Image compression failed:', error);
+      return file; // Return original if compression fails
+    }
+  };
+
   // Initialize Cloudinary Upload Widget
   useEffect(() => {
     if (typeof window !== 'undefined' && window.cloudinary) {
@@ -37,10 +58,18 @@ export default function PhotoUploadStep() {
           multiple: true,
           maxFiles: 10,
           clientAllowedFormats: ['jpg', 'jpeg', 'png', 'webp'],
-          maxFileSize: 10000000, // 10MB
+          maxFileSize: 10000000, // 10MB (before compression)
           sources: ['local', 'camera'],
           showAdvancedOptions: false,
           cropping: false,
+          // Preprocessing hook - compress images before upload
+          prepareUploadParams: async (cb: any, params: any) => {
+            if (params.file && params.file instanceof File) {
+              const compressedFile = await compressImage(params.file);
+              params.file = compressedFile;
+            }
+            cb(params);
+          },
         },
         (error: any, result: any) => {
           if (error) {

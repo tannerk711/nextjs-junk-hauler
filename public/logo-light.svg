@@ -1,0 +1,32 @@
+<svg width="240" height="80" viewBox="0 0 240 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gentleman silhouette -->
+  <g transform="translate(10, 10)">
+    <!-- Hat -->
+    <path d="M20 15 L40 15 L42 12 L38 10 L22 10 L18 12 Z" fill="#1e293b"/>
+    <ellipse cx="30" cy="15" rx="12" ry="3" fill="#1e293b"/>
+
+    <!-- Head -->
+    <circle cx="30" cy="25" r="8" fill="#fef3c7"/>
+
+    <!-- Ear -->
+    <ellipse cx="23" cy="25" rx="2" ry="3" fill="#fde68a"/>
+
+    <!-- Beard -->
+    <path d="M26 28 Q30 32 34 28 L33 30 Q30 32 27 30 Z" fill="#1e293b"/>
+
+    <!-- Collar/Tie -->
+    <path d="M25 33 L35 33 L34 35 L30 38 L26 35 Z" fill="#1e293b"/>
+    <rect x="29" y="35" width="2" height="8" fill="#d97706"/>
+  </g>
+
+  <!-- Company name -->
+  <text x="70" y="35" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" fill="#1e293b">
+    JUNKYARD
+  </text>
+  <text x="70" y="55" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" fill="#1e293b">
+    GENTLEMEN
+  </text>
+  <text x="70" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="400" fill="#d97706" letter-spacing="2">
+    JUNK REMOVAL
+  </text>
+</svg>

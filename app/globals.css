@@ -3,12 +3,58 @@
 @theme inline {
   --font-sans: var(--font-inter);
   --font-display: var(--font-lexend);
+
+  /* Junkyard Gentlemen Brand Colors */
+  --color-charcoal-900: #1e293b;
+  --color-charcoal-800: #334155;
+  --color-charcoal-700: #475569;
+  --color-charcoal-600: #64748b;
+
+  --color-copper-700: #b45309;
+  --color-copper-600: #d97706;
+  --color-copper-500: #f59e0b;
+  --color-copper-400: #fbbf24;
+
+  --color-cream-100: #fef3c7;
+  --color-cream-200: #fde68a;
+  --color-cream-50: #fffbeb;
+
+  --color-forest-700: #065f46;
+  --color-forest-600: #047857;
+  --color-forest-500: #059669;
+}
+
+:root {
+  /* Brand Colors */
+  --brand-charcoal: var(--color-charcoal-900);
+  --brand-copper: var(--color-copper-600);
+  --brand-cream: var(--color-cream-100);
+  --brand-forest: var(--color-forest-600);
+
+  /* Semantic Colors */
+  --color-primary: var(--color-copper-600);
+  --color-primary-hover: var(--color-copper-500);
+  --color-secondary: var(--color-charcoal-800);
+  --color-accent: var(--color-forest-600);
+  --color-background: #ffffff;
+  --color-background-alt: #f8fafc;
 }
 
 body {
   font-family: var(--font-inter), sans-serif;
+  color: var(--brand-charcoal);
 }
 
 .font-display {
   font-family: var(--font-lexend), sans-serif;
+}
+
+/* Gentleman's touch - subtle animations */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
 }

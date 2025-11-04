@@ -14,8 +14,15 @@ const lexend = Lexend({
 });
 
 export const metadata: Metadata = {
-  title: "Junk Yard Gentlemen - Professional Junk Removal Service in Boise",
-  description: "Professional junk removal service in Boise and the Treasure Valley. Fast, affordable, eco-friendly. Same-day service available. Licensed and insured. Get an instant AI-powered quote!",
+  title: "Junkyard Gentlemen | Premium Junk Removal in Boise & Treasure Valley",
+  description: "Experience the gentleman's touch in junk removal. Serving Boise, Meridian, Eagle, Nampa & beyond with respectful, eco-friendly service. AI-powered instant quotes. Same-day service available. Licensed & insured.",
+  keywords: "junk removal Boise, Treasure Valley hauling, Meridian junk removal, Eagle furniture removal, eco-friendly disposal Idaho, estate cleanout Boise, construction debris removal",
+  openGraph: {
+    title: "Junkyard Gentlemen | Premium Junk Removal Boise",
+    description: "The gentleman's touch in junk removal. Respectful, professional, eco-friendly service throughout the Treasure Valley.",
+    type: "website",
+    locale: "en_US",
+  },
 };
 
 export default function RootLayout({

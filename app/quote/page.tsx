@@ -131,13 +131,13 @@ export default function QuotePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-amber-50 via-white to-slate-50 py-8">
+    <div className="min-h-screen bg-cream py-8">
       <div className="mx-auto max-w-4xl px-4 sm:px-6">
         {/* Header */}
         <div className="mb-8 flex items-center justify-between">
           <Link
             href="/"
-            className="inline-flex items-center text-sm font-medium text-amber-700 hover:text-amber-600 transition-colors"
+            className="inline-flex items-center text-sm font-medium text-bronze hover:opacity-80 transition-colors"
           >
             <svg
               className="mr-2 h-4 w-4"
@@ -167,7 +167,7 @@ export default function QuotePage() {
                     <div
                       className={`flex h-10 w-10 items-center justify-center rounded-full text-sm font-semibold transition-all ${
                         step >= stepNum
-                          ? 'bg-amber-600 text-white shadow-md'
+                          ? 'bg-bronze text-white shadow-md'
                           : 'bg-slate-200 text-slate-600'
                       }`}
                     >
@@ -175,7 +175,7 @@ export default function QuotePage() {
                     </div>
                     <p
                       className={`mt-2 text-xs font-medium hidden sm:block ${
-                        step >= stepNum ? 'text-amber-700' : 'text-slate-500'
+                        step >= stepNum ? 'text-bronze' : 'text-slate-500'
                       }`}
                     >
                       {stepLabels[idx]}
@@ -184,7 +184,7 @@ export default function QuotePage() {
                   {stepNum < 6 && (
                     <div
                       className={`h-0.5 flex-1 transition-all ${
-                        step > stepNum ? 'bg-amber-600' : 'bg-slate-200'
+                        step > stepNum ? 'bg-bronze' : 'bg-slate-200'
                       }`}
                     />
                   )}
@@ -224,7 +224,7 @@ export default function QuotePage() {
                     <button
                       type="button"
                       onClick={nextStep}
-                      className="rounded-lg bg-amber-600 px-8 py-3 text-sm font-semibold text-white shadow-lg hover:bg-amber-500 hover:shadow-xl transition-all"
+                      className="rounded-lg bg-bronze px-8 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 hover:shadow-xl transition-all"
                     >
                       Next
                     </button>
@@ -232,7 +232,7 @@ export default function QuotePage() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="rounded-lg bg-amber-600 px-8 py-3 text-sm font-semibold text-white shadow-lg hover:bg-amber-500 hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed transition-all"
+                      className="rounded-lg bg-bronze px-8 py-3 text-sm font-semibold text-white shadow-lg hover:opacity-90 hover:shadow-xl disabled:opacity-70 disabled:cursor-not-allowed transition-all"
                     >
                       {isSubmitting ? (
                         <span className="flex items-center gap-2">

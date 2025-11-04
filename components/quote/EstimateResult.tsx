@@ -44,7 +44,7 @@ export default function EstimateResult({ estimate }: EstimateResultProps) {
       </p>
 
       {/* Main Glassmorphic Card */}
-      <div className="mt-8 relative rounded-2xl bg-gradient-to-br from-amber-600 via-amber-500 to-orange-600 p-[2px] shadow-2xl shadow-amber-500/50">
+      <div className="mt-8 relative rounded-2xl bg-gradient-to-br from-bronze via-bronze-light to-bronze-dark p-[2px] shadow-2xl shadow-bronze/50">
         <div className="rounded-2xl bg-white/10 backdrop-blur-md p-8 text-white">
           {/* AI Estimate Badge */}
           <div className="absolute top-4 right-4 flex items-center gap-1.5 rounded-full bg-white/20 backdrop-blur-sm px-3 py-1 text-xs font-medium">
@@ -112,7 +112,7 @@ export default function EstimateResult({ estimate }: EstimateResultProps) {
 
       {/* Volume Breakdown (if available) */}
       {estimate.volumeBreakdown && (
-        <div className="mt-6 rounded-xl border border-slate-200 bg-gradient-to-br from-slate-50 to-amber-50 p-6 text-left shadow-md">
+        <div className="mt-6 rounded-xl border border-slate-200 bg-gradient-to-br from-slate-50 to-cream-dark p-6 text-left shadow-md">
           <h3 className="font-display text-lg font-semibold text-slate-900 mb-4">
             Volume Breakdown
           </h3>
@@ -123,7 +123,7 @@ export default function EstimateResult({ estimate }: EstimateResultProps) {
             </div>
             <div className="border-x border-slate-200">
               <p className="text-xs text-slate-600 mb-1">Mid-Range</p>
-              <p className="text-lg font-semibold text-amber-600">{estimate.volumeBreakdown.midRange}</p>
+              <p className="text-lg font-semibold text-bronze">{estimate.volumeBreakdown.midRange}</p>
             </div>
             <div>
               <p className="text-xs text-slate-600 mb-1">High</p>
@@ -154,31 +154,31 @@ export default function EstimateResult({ estimate }: EstimateResultProps) {
       </div>
 
       {/* What Happens Next */}
-      <div className="mt-8 rounded-xl border-2 border-amber-200 bg-gradient-to-br from-amber-50 to-orange-50 p-6">
-        <h3 className="font-display text-xl font-bold text-slate-900">
-          The Gentleman's Process - What's Next?
+      <div className="mt-8 rounded-xl border-2 border-bronze/30 bg-gradient-to-br from-cream-dark to-white p-6">
+        <h3 className="font-display text-xl font-bold text-charcoal">
+          What Happens Next - Simple & Professional
         </h3>
         <ul className="mt-4 space-y-3 text-left text-sm text-slate-700">
           <li className="flex items-start gap-3">
-            <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-amber-600 text-white text-xs font-bold">
+            <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-bronze text-white text-xs font-bold">
               1
             </div>
             <span>We've received your request and will contact you within 1 hour to confirm</span>
           </li>
           <li className="flex items-start gap-3">
-            <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-amber-600 text-white text-xs font-bold">
+            <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-bronze text-white text-xs font-bold">
               2
             </div>
             <span>We'll review final pricing and schedule a convenient pickup time (same-day often available)</span>
           </li>
           <li className="flex items-start gap-3">
-            <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-amber-600 text-white text-xs font-bold">
+            <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-bronze text-white text-xs font-bold">
               3
             </div>
-            <span>Our uniformed gentlemen arrive on time, haul everything, and clean up spotlessly</span>
+            <span>Our professional team arrives on time, hauls everything, and cleans up spotlessly</span>
           </li>
           <li className="flex items-start gap-3">
-            <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-amber-600 text-white text-xs font-bold">
+            <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-bronze text-white text-xs font-bold">
               4
             </div>
             <span>Items are donated or recycled when possible - you get a receipt for tax purposes</span>
@@ -190,7 +190,7 @@ export default function EstimateResult({ estimate }: EstimateResultProps) {
       <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center">
         <a
           href="tel:+18445435865"
-          className="inline-flex items-center justify-center rounded-lg bg-amber-600 px-8 py-4 text-base font-semibold text-white hover:bg-amber-500 transition-all shadow-lg shadow-amber-600/30 hover:shadow-xl hover:shadow-amber-600/40"
+          className="inline-flex items-center justify-center rounded-lg bg-bronze px-8 py-4 text-base font-semibold text-white hover:opacity-90 transition-all shadow-lg shadow-bronze/30 hover:shadow-xl hover:shadow-bronze/40"
         >
           <svg className="mr-2 h-5 w-5" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
             <path

@@ -4,44 +4,79 @@
   --font-sans: var(--font-inter);
   --font-display: var(--font-lexend);
 
-  /* Junkyard Gentlemen Brand Colors */
-  --color-charcoal-900: #1e293b;
-  --color-charcoal-800: #334155;
-  --color-charcoal-700: #475569;
-  --color-charcoal-600: #64748b;
+  /* Junkyard Gentlemen Brand Colors - Bronze Theme */
+  /* Charcoal - Dark sophisticated base */
+  --color-charcoal: 0 0% 18%;
+  --color-charcoal-dark: 0 0% 13%;
+  --color-charcoal-light: 0 0% 25%;
 
-  --color-copper-700: #b45309;
-  --color-copper-600: #d97706;
-  --color-copper-500: #f59e0b;
-  --color-copper-400: #fbbf24;
+  /* Bronze/Gold - Luxury accent */
+  --color-bronze: 43 74% 39%;
+  --color-bronze-light: 43 74% 49%;
+  --color-bronze-dark: 43 74% 29%;
 
-  --color-cream-100: #fef3c7;
-  --color-cream-200: #fde68a;
-  --color-cream-50: #fffbeb;
+  /* Cream - Warm neutral backgrounds */
+  --color-cream: 40 20% 96%;
+  --color-cream-dark: 40 15% 90%;
+  --color-cream-darker: 40 15% 85%;
 
-  --color-forest-700: #065f46;
-  --color-forest-600: #047857;
-  --color-forest-500: #059669;
+  /* Forest Green - Eco accents */
+  --color-forest: 100 45% 25%;
+  --color-forest-light: 100 45% 35%;
+
+  /* Muted tones */
+  --color-muted: 40 15% 90%;
+  --color-muted-foreground: 0 0% 45%;
+
+  /* Semantic color mappings for Tailwind */
+  --color-background: 40 20% 96%;
+  --color-foreground: 0 0% 18%;
+  --color-primary: 0 0% 18%;
+  --color-primary-foreground: 40 20% 96%;
+  --color-secondary: 43 74% 39%;
+  --color-secondary-foreground: 0 0% 100%;
+  --color-accent: 43 74% 39%;
+  --color-accent-foreground: 0 0% 100%;
+  --color-border: 40 15% 85%;
+  --color-input: 40 15% 90%;
+  --color-ring: 43 74% 39%;
+
+  /* Card colors */
+  --color-card: 0 0% 100%;
+  --color-card-foreground: 0 0% 18%;
+
+  /* Destructive */
+  --color-destructive: 0 84.2% 60.2%;
+  --color-destructive-foreground: 0 0% 98%;
 }
 
 :root {
-  /* Brand Colors */
-  --brand-charcoal: var(--color-charcoal-900);
-  --brand-copper: var(--color-copper-600);
-  --brand-cream: var(--color-cream-100);
-  --brand-forest: var(--color-forest-600);
+  /* Brand Colors (HSL format for compatibility) */
+  --brand-charcoal: hsl(0 0% 18%);
+  --brand-bronze: hsl(43 74% 39%);
+  --brand-cream: hsl(40 20% 96%);
+  --brand-forest: hsl(100 45% 25%);
+
+  /* Legacy hex colors for gradual migration */
+  --brand-charcoal-hex: #2e2e2e;
+  --brand-bronze-hex: #b8860b;
+  --brand-cream-hex: #f5f0e8;
+  --brand-forest-hex: #406a40;
 
   /* Semantic Colors */
-  --color-primary: var(--color-copper-600);
-  --color-primary-hover: var(--color-copper-500);
-  --color-secondary: var(--color-charcoal-800);
-  --color-accent: var(--color-forest-600);
-  --color-background: #ffffff;
-  --color-background-alt: #f8fafc;
+  --color-primary-action: hsl(43 74% 39%);
+  --color-primary-action-hover: hsl(43 74% 29%);
+  --color-text-primary: hsl(0 0% 18%);
+  --color-text-secondary: hsl(0 0% 45%);
+  --color-background-light: hsl(0 0% 100%);
+  --color-background-alt: hsl(40 20% 96%);
+
+  --radius: 0.5rem;
 }
 
 body {
   font-family: var(--font-inter), sans-serif;
+  background-color: var(--brand-cream);
   color: var(--brand-charcoal);
 }
 
@@ -49,7 +84,7 @@ body {
   font-family: var(--font-lexend), sans-serif;
 }
 
-/* Gentleman's touch - subtle animations */
+/* Smooth transitions and hover effects */
 .hover-lift {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -57,4 +92,58 @@ body {
 .hover-lift:hover {
   transform: translateY(-4px);
   box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.hover-bronze-border {
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.hover-bronze-border:hover {
+  border-color: var(--brand-bronze);
+  transform: translateY(-2px);
+}
+
+.transition-smooth {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Custom utility classes for bronze theme */
+.bg-bronze {
+  background-color: var(--brand-bronze);
+}
+
+.text-bronze {
+  color: var(--brand-bronze);
+}
+
+.border-bronze {
+  border-color: var(--brand-bronze);
+}
+
+.bg-charcoal {
+  background-color: var(--brand-charcoal);
+}
+
+.text-charcoal {
+  color: var(--brand-charcoal);
+}
+
+.bg-cream {
+  background-color: var(--brand-cream);
+}
+
+.text-cream {
+  color: var(--brand-cream);
+}
+
+/* Dark mode support */
+.dark {
+  --color-background: 0 0% 13%;
+  --color-foreground: 40 20% 96%;
+  --color-primary: 40 20% 96%;
+  --color-primary-foreground: 0 0% 18%;
+  --color-card: 0 0% 18%;
+  --color-card-foreground: 40 20% 96%;
+  --color-border: 0 0% 25%;
+  --color-input: 0 0% 25%;
 }

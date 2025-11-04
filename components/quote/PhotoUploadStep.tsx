@@ -135,7 +135,7 @@ export default function PhotoUploadStep() {
         >
           {isUploading ? (
             <>
-              <div className="h-12 w-12 animate-spin rounded-full border-4 border-slate-300 border-t-amber-600"></div>
+              <div className="h-12 w-12 animate-spin rounded-full border-4 border-slate-300 border-t-bronze"></div>
               <p className="mt-4 text-sm font-medium text-slate-900">Uploading photos...</p>
             </>
           ) : (
@@ -228,32 +228,32 @@ export default function PhotoUploadStep() {
 
       {/* Photo Tips Section */}
       <div className="mt-8 space-y-4">
-        <div className="rounded-lg bg-amber-50 border-2 border-amber-200 p-5">
+        <div className="rounded-lg bg-cream-dark border-2 border-bronze/30 p-5">
           <div className="flex items-start gap-3">
-            <div className="flex-shrink-0 w-10 h-10 rounded-full bg-amber-600 flex items-center justify-center">
+            <div className="flex-shrink-0 w-10 h-10 rounded-full bg-bronze flex items-center justify-center">
               <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18" />
               </svg>
             </div>
             <div className="flex-1">
-              <p className="text-sm font-bold text-amber-900 mb-3">
+              <p className="text-sm font-bold text-charcoal mb-3">
                 Pro Tips for Accurate Estimates
               </p>
-              <ul className="text-sm text-amber-800 space-y-2">
+              <ul className="text-sm text-slate-700 space-y-2">
                 <li className="flex items-start gap-2">
-                  <span className="text-amber-600 font-bold">✓</span>
+                  <span className="text-bronze font-bold">✓</span>
                   <span><strong>2-3 photos is perfect</strong> - Quality over quantity for faster processing</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-amber-600 font-bold">✓</span>
+                  <span className="text-bronze font-bold">✓</span>
                   <span><strong>Show different angles</strong> - Helps our AI understand volume accurately</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-amber-600 font-bold">✓</span>
+                  <span className="text-bronze font-bold">✓</span>
                   <span><strong>Include size reference</strong> - Nearby door frame, person, or furniture helps</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="text-amber-600 font-bold">✓</span>
+                  <span className="text-bronze font-bold">✓</span>
                   <span><strong>Good lighting matters</strong> - Natural daylight or bright room lighting works best</span>
                 </li>
               </ul>

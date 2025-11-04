@@ -16,7 +16,7 @@
 
     <!-- Collar/Tie -->
     <path d="M25 33 L35 33 L34 35 L30 38 L26 35 Z" fill="#fef3c7"/>
-    <rect x="29" y="35" width="2" height="8" fill="#d97706"/>
+    <rect x="29" y="35" width="2" height="8" fill="#b8860b"/>
   </g>
 
   <!-- Company name -->
@@ -26,7 +26,7 @@
   <text x="70" y="55" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" fill="#fef3c7">
     GENTLEMEN
   </text>
-  <text x="70" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="400" fill="#d97706" letter-spacing="2">
+  <text x="70" y="68" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="400" fill="#b8860b" letter-spacing="2">
     JUNK REMOVAL
   </text>
 </svg>

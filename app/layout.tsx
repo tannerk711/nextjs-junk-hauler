@@ -15,11 +15,11 @@ const lexend = Lexend({
 
 export const metadata: Metadata = {
   title: "Junkyard Gentlemen | Premium Junk Removal in Boise & Treasure Valley",
-  description: "Experience the gentleman's touch in junk removal. Serving Boise, Meridian, Eagle, Nampa & beyond with respectful, eco-friendly service. AI-powered instant quotes. Same-day service available. Licensed & insured.",
-  keywords: "junk removal Boise, Treasure Valley hauling, Meridian junk removal, Eagle furniture removal, eco-friendly disposal Idaho, estate cleanout Boise, construction debris removal",
+  description: "Professional, white-glove junk removal service in Boise and Treasure Valley. Stress-free, respectful service with eco-friendly disposal. AI-powered instant quotes. Same-day service available. Licensed & insured.",
+  keywords: "junk removal Boise, Treasure Valley hauling, Meridian junk removal, Eagle furniture removal, eco-friendly disposal Idaho, estate cleanout Boise, construction debris removal, professional junk hauling, white-glove service",
   openGraph: {
-    title: "Junkyard Gentlemen | Premium Junk Removal Boise",
-    description: "The gentleman's touch in junk removal. Respectful, professional, eco-friendly service throughout the Treasure Valley.",
+    title: "Junkyard Gentlemen | Professional Junk Removal Boise",
+    description: "Professional, stress-free junk removal with white-glove service throughout the Treasure Valley. Eco-friendly, respectful, and reliable.",
     type: "website",
     locale: "en_US",
   },

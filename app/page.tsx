@@ -24,7 +24,7 @@ export default function Home() {
             className="object-cover"
           />
           {/* Dark Overlay for Text Readability */}
-          <div className="absolute inset-0 bg-gradient-to-br from-charcoal/80 via-charcoal/70 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-charcoal/90 via-charcoal/85 to-charcoal/40"></div>
         </div>
 
         {/* Hero Content */}

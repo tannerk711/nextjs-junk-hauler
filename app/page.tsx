@@ -162,33 +162,36 @@ export default function Home() {
             {serviceCategories.map((category, index) => (
               <div
                 key={index}
-                className="group relative overflow-hidden rounded-2xl shadow-lg hover-lift transition-smooth cursor-pointer"
-                style={{ height: '400px' }}
+                className="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-smooth overflow-hidden"
               >
-                {/* Background Image */}
-                <div className="absolute inset-0">
+                {/* Image Section */}
+                <div className="relative h-64 overflow-hidden">
                   <Image
                     src={category.image}
                     alt={category.name}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-black/60 group-hover:bg-black/70 transition-all"></div>
+                  {/* Icon Badge - positioned to overlap image and content */}
+                  <div className="absolute -bottom-8 left-6 w-16 h-16 rounded-full bg-bronze flex items-center justify-center shadow-lg z-10">
+                    <span className="text-3xl">{category.icon}</span>
+                  </div>
                 </div>
 
-                {/* Content */}
-                <div className="relative h-full flex flex-col items-center justify-center text-center p-6 z-10">
-                  {/* Icon Circle */}
-                  <div className="w-20 h-20 rounded-full bg-bronze flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg">
-                    <span className="text-4xl">{category.icon}</span>
-                  </div>
-
+                {/* Content Section */}
+                <div className="pt-12 px-6 pb-8">
                   {/* Category Name */}
-                  <h3 className="text-2xl font-bold text-white mb-3 drop-shadow-lg">{category.name}</h3>
+                  <h3 className="text-xl font-bold text-charcoal mb-4">{category.name}</h3>
 
-                  {/* Description */}
-                  <p className="text-slate-100 leading-relaxed drop-shadow-md">{category.description}</p>
+                  {/* Items List */}
+                  <ul className="space-y-2">
+                    {category.items.map((item, itemIndex) => (
+                      <li key={itemIndex} className="flex items-start gap-2 text-sm text-slate-700">
+                        <span className="text-bronze mt-1 flex-shrink-0">•</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             ))}
@@ -497,19 +500,43 @@ const serviceCategories = [
     name: 'Residential Junk Removal',
     icon: '🏠',
     image: '/residential-cleanout.jpg',
-    description: 'Appliances, furniture, mattresses, hot tubs, carpets, exercise equipment, electronics, and TVs',
+    items: [
+      'Appliances (refrigerators, washers, dryers)',
+      'Furniture (sofas, beds, dressers)',
+      'Mattresses and box springs',
+      'Hot tubs and spas',
+      'Carpets and rugs',
+      'Exercise equipment',
+      'Electronics and TVs',
+    ],
   },
   {
     name: 'Commercial Junk Removal',
     icon: '🏢',
     image: '/commercial-office.jpg',
-    description: 'Office furniture and desks, computers and electronics, filing cabinets, office supplies and equipment, retail fixtures, restaurant equipment, warehouse cleanouts',
+    items: [
+      'Office furniture and desks',
+      'Computers and electronics',
+      'Filing cabinets',
+      'Office supplies and equipment',
+      'Retail fixtures',
+      'Restaurant equipment',
+      'Warehouse cleanouts',
+    ],
   },
   {
     name: 'Storage Unit Cleanouts',
     icon: '📦',
     image: '/storage-unit.jpg',
-    description: 'Full storage unit cleanouts, abandoned storage contents, boxes and containers, furniture and household goods, business inventory and supplies, personal belongings removal, climate-controlled unit cleanouts',
+    items: [
+      'Full storage unit cleanouts',
+      'Abandoned storage contents',
+      'Boxes and containers',
+      'Furniture and household goods',
+      'Business inventory and supplies',
+      'Personal belongings removal',
+      'Climate-controlled unit cleanouts',
+    ],
   },
 ];
 

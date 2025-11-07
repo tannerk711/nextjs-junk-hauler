@@ -53,19 +53,26 @@ export default function LocationStep() {
         </div>
 
         <div>
-          <label htmlFor="address" className="block text-sm font-medium text-slate-900">
-            Street Address <span className="text-slate-500">(optional)</span>
+          <label htmlFor="zip" className="block text-sm font-medium text-slate-900">
+            ZIP Code
           </label>
           <input
             type="text"
-            id="address"
-            {...register('address')}
-            placeholder="123 Main St"
+            id="zip"
+            {...register('zip', {
+              required: 'ZIP code is required',
+              pattern: {
+                value: /^\d{5}(-\d{4})?$/,
+                message: 'Invalid ZIP code format (use 12345 or 12345-6789)'
+              }
+            })}
+            placeholder="83702"
+            maxLength={10}
             className="mt-2 block w-full rounded-lg border border-slate-300 px-4 py-3 text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
           />
-          <p className="mt-1 text-xs text-slate-500">
-            Full address helps us provide a more accurate estimate
-          </p>
+          {errors.zip && (
+            <p className="mt-1 text-sm text-red-600">{errors.zip.message as string}</p>
+          )}
         </div>
 
         <div className="rounded-lg border border-slate-200 bg-slate-50 p-4">

@@ -18,6 +18,7 @@ type FormData = {
   junkTypes: string[];
   city: string;
   address?: string;
+  zip: string;
   difficultAccess?: boolean;
   datePreference: string;
   photos: Array<{
@@ -58,6 +59,7 @@ export default function QuotePage() {
       junkTypes: [],
       city: '',
       address: '',
+      zip: '',
       difficultAccess: false,
       datePreference: 'asap',
       photos: [],
@@ -95,7 +97,7 @@ export default function QuotePage() {
       setEstimate(estimateData);
 
       // Save lead to Zapier/GHL
-      await fetch('/api/save-lead', {
+      const saveLeadRes = await fetch('/api/save-lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -103,6 +105,13 @@ export default function QuotePage() {
           estimate: estimateData,
         }),
       });
+
+      if (!saveLeadRes.ok) {
+        const errorData = await saveLeadRes.json();
+        console.error('Failed to save lead:', errorData);
+        // Still show results but log the error
+        alert('Your quote was generated successfully, but there was an issue saving your information. Please call us directly at (844) 543-JUNK');
+      }
 
       setIsGenerating(false);
       setStep(7); // Show results

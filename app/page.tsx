@@ -172,22 +172,22 @@ export default function Home() {
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  {/* Icon Badge - positioned to overlap image and content */}
-                  <div className="absolute -bottom-8 left-6 w-16 h-16 rounded-full bg-bronze flex items-center justify-center shadow-lg z-10">
+                  {/* Icon Badge - positioned in top left */}
+                  <div className="absolute top-6 left-6 w-16 h-16 rounded-full bg-bronze flex items-center justify-center shadow-lg z-10">
                     <span className="text-3xl">{category.icon}</span>
                   </div>
                 </div>
 
                 {/* Content Section */}
-                <div className="pt-12 px-6 pb-8">
+                <div className="px-6 py-8">
                   {/* Category Name */}
                   <h3 className="text-xl font-bold text-charcoal mb-4">{category.name}</h3>
 
                   {/* Items List */}
                   <ul className="space-y-2">
                     {category.items.map((item, itemIndex) => (
-                      <li key={itemIndex} className="flex items-start gap-2 text-sm text-slate-700">
-                        <span className="text-bronze mt-1 flex-shrink-0">•</span>
+                      <li key={itemIndex} className="flex items-center gap-2 text-sm text-slate-700">
+                        <span className="text-bronze flex-shrink-0">•</span>
                         <span>{item}</span>
                       </li>
                     ))}

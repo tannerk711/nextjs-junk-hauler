@@ -174,7 +174,7 @@ export default function Home() {
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   {/* Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/100 via-charcoal/95 to-charcoal/50 group-hover:from-charcoal group-hover:to-charcoal/100 transition-all"></div>
+                  <div className="absolute inset-0 bg-black/60 group-hover:bg-black/70 transition-all"></div>
                 </div>
 
                 {/* Content */}

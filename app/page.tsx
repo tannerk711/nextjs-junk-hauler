@@ -385,28 +385,28 @@ export default function Home() {
 
         {/* CTA Section */}
         <div className="mx-auto mt-32 mb-32 max-w-4xl">
-          <div className="rounded-3xl bg-gradient-to-br from-bronze to-bronze-dark p-12 lg:p-16 shadow-2xl text-center">
+          <div className="rounded-3xl bg-bronze p-12 lg:p-16 shadow-2xl text-center">
             <h2 className="font-display text-4xl font-bold tracking-tight text-white sm:text-5xl">
               Ready for Stress-Free, Professional Service?
             </h2>
-            <p className="mt-6 text-xl leading-8 text-cream max-w-2xl mx-auto">
+            <p className="mt-6 text-xl leading-8 text-white max-w-2xl mx-auto">
               Get an instant, AI-powered quote in minutes. Our advanced system analyzes your photos to provide accurate, transparent pricing.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link
                 href="/quote"
-                className="w-full sm:w-auto rounded-lg bg-white px-10 py-4 text-lg font-semibold text-bronze shadow-lg hover:bg-cream transition-all hover:scale-105"
+                className="w-full sm:w-auto rounded-lg bg-white px-10 py-4 text-lg font-semibold text-charcoal shadow-lg hover:bg-cream transition-all hover:scale-105"
               >
                 Get Your Free Quote
               </Link>
               <a
                 href="tel:+18445435865"
-                className="w-full sm:w-auto rounded-lg border-2 border-white px-10 py-4 text-lg font-semibold text-white hover:bg-white hover:text-bronze transition-all"
+                className="w-full sm:w-auto rounded-lg border-2 border-white px-10 py-4 text-lg font-semibold text-white hover:bg-white hover:text-charcoal transition-all"
               >
                 Or Call Now
               </a>
             </div>
-            <p className="mt-8 text-sm text-bronze-light">
+            <p className="mt-8 text-sm text-white">
               No commitment required • Same-day service available • Licensed & insured
             </p>
           </div>

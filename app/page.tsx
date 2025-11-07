@@ -24,7 +24,7 @@ export default function Home() {
             className="object-cover"
           />
           {/* Dark Overlay for Text Readability */}
-          <div className="absolute inset-0 bg-black/85"></div>
+          <div className="absolute inset-0 bg-black/70"></div>
         </div>
 
         {/* Hero Content */}

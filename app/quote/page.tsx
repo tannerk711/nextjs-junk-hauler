@@ -131,8 +131,39 @@ export default function QuotePage() {
     }
   };
 
-  const nextStep = () => {
-    setStep(step + 1);
+  const nextStep = async () => {
+    // Validate current step fields before proceeding
+    let fieldsToValidate: (keyof FormData)[] = [];
+    let customValidationPassed = true;
+
+    switch (step) {
+      case 1:
+        fieldsToValidate = ['propertyType'];
+        break;
+      case 2:
+        fieldsToValidate = ['junkTypes'];
+        break;
+      case 3:
+        fieldsToValidate = ['city', 'zip'];
+        break;
+      case 4:
+        fieldsToValidate = ['datePreference'];
+        break;
+      case 5:
+        // Custom validation for photos (not using register)
+        const photos = methods.getValues('photos');
+        if (!photos || photos.length === 0) {
+          alert('Please upload at least one photo of your junk');
+          customValidationPassed = false;
+        }
+        break;
+    }
+
+    const isValid = fieldsToValidate.length > 0 ? await methods.trigger(fieldsToValidate) : true;
+
+    if (isValid && customValidationPassed) {
+      setStep(step + 1);
+    }
   };
 
   const prevStep = () => {

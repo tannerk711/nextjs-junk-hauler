@@ -39,8 +39,7 @@ export default function Home() {
             </div>
 
             <h1 className="font-display text-5xl font-bold tracking-tight text-white sm:text-7xl leading-tight">
-              <span className="block text-bronze-light drop-shadow-2xl">Professional Junk Removal</span>
-              <span className="block text-3xl sm:text-5xl mt-4 text-cream drop-shadow-xl">with White-Glove Service</span>
+              <span className="block text-bronze-light drop-shadow-2xl">Professional Boise Junk Removal Service</span>
             </h1>
             <p className="mt-8 text-xl leading-8 text-slate-200 max-w-2xl mx-auto drop-shadow-lg">
               Respectful, stress-free service that treats your property with care. Serving Boise and the Treasure Valley with eco-friendly junk removal you can trust.
